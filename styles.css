@@ -1,0 +1,322 @@
+/* * * * * * * * * * * *\
+ *     Portfolio       *
+ *                     *
+ *  By: Mohamed Hamed  *
+ *                     *
+ *   Assignment for:   *
+ *  The Odin Project   *
+ * theodinproject.com  *
+\* * * * * * * * * * * */
+
+/* Normalize and CSS Reset*/
+:root {
+  line-height: 1.5;
+  --color-accent: #0099cc;
+  --color-background: #fafafa;
+  --color-main-text: #080808;
+  --color-hero-text: #fafafa;
+  --shadow-main-box: 0 0 0.4em rgba(0, 0, 0, 0.4);
+  --shadow-main-title: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  --shadow-main-link: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  --shadow-hero-link: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.8);
+  --transition-all: all 0.3s ease-out;
+  --transition-bg: background-color 0.3s ease-out;
+  --transition-color: color 0.3s ease-out;
+  --transition-fill: fill 0.3s ease-out;
+
+  /* Font Families */
+  --font-base: Calibri, Arial, sans-serif;
+  --font-title: Georgia, Cambria, serif;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  font-family: var(--font-base);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  color: black;
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+ol[role="list"],
+ul[role="list"] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+/* Desktop and common Layout*/
+header {
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 0.1em 0.4em;
+  z-index: 1;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #5cb5d8 100%);
+  opacity: 0.95;
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+}
+nav {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.7rem;
+  display: flex;
+  padding: 8px 20px;
+}
+nav a {
+  color: white;
+  font-size: 1.7rem;
+  margin-right: 1em;
+  opacity: 1;
+  text-decoration: none;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+  transition: text-shadow 0.2s ease-in-out;
+}
+nav a:hover {
+  text-shadow: 0 0 15px rgba(173, 216, 230, 1);
+}
+#about {
+  position: relative; /* Required for positioning the pseudo-element */
+  width: 100%;
+  display: grid;
+  padding: 200px 50px;
+  grid-template-columns: 380px 500px;
+  align-items: center;
+  justify-content: center;
+  grid-template-areas: "photo about-me";
+  overflow: hidden; /* Ensure the pseudo-element stays within bounds */
+}
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  clip-path: polygon(0 0, 0 55%, 100% 100%, 100% 0); /* Polygon shape */
+  z-index: -1; /* Place behind the content */
+}
+.photo {
+  box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.8), inset 0 0 2em rgba(0, 0, 0, 0.3);
+}
+.about-me {
+  background-color: white;
+  padding: 20px 40px 20px 30px;
+  font-size: 1.2rem;
+  color: rgb(74, 74, 74);
+  box-shadow: var(--shadow-main-box);
+}
+.about-me p {
+  margin: 20px 0;
+}
+.icons {
+  text-align: end;
+}
+#work {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px 90px;
+  padding-bottom: 150px;
+  text-align: start;
+}
+.cards {
+  display: grid;
+  gap: 50px 40px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card .screen-shot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  background-image: linear-gradient(135deg, #000000 0%, #535353 100%);
+  font-size: 2.4rem;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  height: 230px;
+}
+.card .project-name {
+  display: flex;
+  padding: 15px 20px;
+  justify-content: space-between;
+  color: var(--color-hero-text);
+  margin-right: 1em;
+  padding-bottom: 0;
+}
+.card .description {
+  color: rgb(19, 19, 19);
+  padding: 15px;
+  padding-top: 5px;
+  font-size: 1.2rem;
+}
+#contact {
+  display: flex;
+  box-sizing: border-box;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #34cbdb 100%);
+  padding: 70px 80px;
+  color: white;
+  font-size: 1.2rem;
+  width: 100%;
+  flex: auto;
+  align-items: start;
+}
+.contact-me {
+  width: 900px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+.contact-me p {
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: var(--shadow-main-title);
+  margin-bottom: 14px;
+}
+.adress p:first-child {margin-bottom: 0;}
+#contact-title {
+  text-shadow: var(--shadow-main-title);
+  font-size: 2.6rem;
+  margin-bottom: 15px;
+}
+.contact-photo {
+  background-color: white;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card a {
+  color: #54b3d6;
+  font-family: "Poppins", sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: #54b3d6;
+  padding: 0 0.25rem;
+  margin: 0 -0.25rem;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.card a:hover {
+  color: #fff;
+  box-shadow: inset 200px 0 0 0 #54b3d6;
+}
+.github-icon {
+  display: inline-block;
+  font-size: 50px; /* Adjust size as needed */
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.github-icon:hover {
+  animation: rotate 0.6s linear; /* Rotation animation on hover */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.title {
+  width: fit-content;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  position: relative;
+  border-top: 2px solid rgba(0, 0, 0, 0);
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+  transition: padding 0.3s, border-color 0.3s;
+}
+
+.title:focus,
+.title:hover {
+  padding: 5px 7px;
+  border-color: rgb(0, 0, 0);
+  outline: none;
+}
+.title::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-height: 0;
+  color: rgba(0, 0, 0, 0);
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgb(0, 0, 0, 0);
+  content: attr(data-text);
+  transition: max-height 0.3s, border-color 0s;
+}
+
+.title::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  max-height: 0;
+  color: rgba(0, 0, 0, 0);
+  border-right: 2px solid rgb(0, 0, 0, 0);
+  content: attr(data-text);
+  transition: max-height 0.3s, border-color 0s;
+}
+
+.title:focus::before,
+.title:hover::before,
+.title:focus::after,
+.title:hover::after {
+  max-height: 100%;
+  transition-delay: 0.28s;
+  border-color: rgb(0, 0, 0);
+}
+@media (max-width: 768px) {
+  nav {
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: center;
+    padding: 8px 20px;
+  }
+  #about {
+    padding: 200px 0;
+  }
+  #work {
+    padding: 40px 20px;
+  }
+  .cards {
+    padding: 20px 0;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  #contact {
+    flex-direction: column;
+    padding: 0;
+  }
+  .contact-me {
+    padding: 0;
+  }
+}
